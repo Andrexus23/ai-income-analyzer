@@ -7,17 +7,29 @@ from pydantic_settings import (
     JsonConfigSettingsSource,
 )
 
-class ModelSettings(BaseModel):
+class LLMSettings(BaseModel):
     """Settings for model interaction."""
 
     api_base: str
     model: str
+    
+class VectorStoreSettings(BaseModel):
+    """Settings for vector store interaction."""
+
+    db_path: str
+    embeddings_model: str
+    
+class DataSettings(BaseModel):
+    """Data settings."""
+    
+    dataset_path: str
 
 
 class Settings(BaseSettings):
 
-    dataset: str
-    model_settings: ModelSettings
+    llm_settings: LLMSettings
+    vector_store_settings: VectorStoreSettings
+    data_settings: DataSettings
     model_config = SettingsConfigDict(json_file='config.json')
     
     @classmethod

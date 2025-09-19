@@ -1,7 +1,13 @@
 {
-    "dataset": "",
-    "model_settings": {
+    "llm_settings": {
         "api_base": "",
         "model": ""
+    },
+    "vector_store_settings": {
+        "db_path": "",
+        "embeddings_model" : ""
+    },
+    "data_settings": {
+        "dataset_path": ""
     }
 }

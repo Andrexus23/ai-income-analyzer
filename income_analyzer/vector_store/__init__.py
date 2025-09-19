@@ -1,0 +1,1 @@
+from income_analyzer.vector_store.vector_store_manager import VectorStoreManager
