@@ -16,6 +16,7 @@ class LLMSettings(BaseModel):
 class VectorStoreSettings(BaseModel):
     """Settings for vector store interaction."""
 
+    db_name: str
     db_path: str
     embeddings_model: str
     

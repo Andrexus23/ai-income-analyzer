@@ -1,6 +1,6 @@
 """Entry point."""
-from income_analyzer.config import get_config
+from income_analyzer.vector_store import VectorStoreManager
 
 if __name__ == "__main__":
-    x = get_config()
-    pass
+    vector_store_manager = VectorStoreManager()
+    print(vector_store_manager.embeddings)
