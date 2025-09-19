@@ -1,0 +1,2 @@
+K_RELEVANT: int = 5
+SCORE_THRESHOLD: float = 0.5

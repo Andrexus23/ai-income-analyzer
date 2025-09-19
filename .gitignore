@@ -1,0 +1,118 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Environments
+.env
+.venv*/
+env/
+venv/
+ENV/
+
+# Distribution / packaging
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+*.manifest
+*.spec
+
+# Installer logs
+pip-log.txt
+pip-delete-this-directory.txt
+pypipo.log
+*.log
+
+# Unit test / coverage reports
+htmlcov/
+.tox/
+.pytest_cache/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+*.lcov
+.hypothesis/
+.nyc_output
+.ruff_cache/
+.trunk/
+
+# Jupyter Notebook
+.ipynb_checkpoints/
+
+# IPython
+profile_default/
+ipython_config.py
+
+# pyenv
+.python-version
+
+# pyflow
+__pypackages__/
+
+# Poetry
+poetry.lock
+
+# node_modules
+node_modules/
+
+# mypy
+.mypy_cache/
+mypy-report/
+mypy-html/
+
+# Cython
+*.so
+
+# Translations
+*.mo
+*.pot
+
+# Django stuff:
+*.db
+*.sqlite3
+*.sqlitedb
+
+# OS or Editor Folders
+.DS_Store
+Thumbs.db
+.vscode/
+*.swp
+*~
+*.bak
+*.tmp
+.idea/
+.tern-project
+.ropeproject
+/out/
+
+# Snyk
+.snyk
+
+# Ruff
+.ruff_cache
+
+# Black
+.black
+
+# Standard Python
+*.pyc
+*.pyd
+
+# Chroma db
+chroma_embeddings_db/

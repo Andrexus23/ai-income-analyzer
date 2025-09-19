@@ -1,0 +1,1 @@
+from income_analyzer.config.config import get_config

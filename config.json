@@ -1,0 +1,14 @@
+{
+    "llm_settings": {
+        "api_base": "https://openrouter.ai/api/v1",
+        "model": "openai/gpt-3.5-turbo"
+    },
+    "vector_store_settings": {
+        "db_name": "freelancer_earnings_db",
+        "db_path": "./chroma_embeddings_db",
+        "embeddings_model" : "BAAI/bge-small-en-v1.5"
+    },
+    "data_settings": {
+        "dataset_path": "data/freelancer_earnings_bd.csv"
+    }
+}
