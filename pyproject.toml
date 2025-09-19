@@ -9,6 +9,7 @@ dependencies = [
     "langchain>=0.3.27",
     "langchain-chroma>=0.2.6",
     "langchain-community>=0.3.29",
+    "langchain-openai>=0.3.33",
     "pandas>=2.3.2",
     "pydantic>=2.11.9",
     "pydantic-settings>=2.10.1",

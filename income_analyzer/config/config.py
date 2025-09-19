@@ -1,3 +1,5 @@
+"""Config models."""
+from dotenv import load_dotenv
 from pydantic_settings import BaseSettings, JsonConfigSettingsSource
 from pydantic import BaseModel
 from pydantic_settings import (
@@ -44,7 +46,9 @@ class Settings(BaseSettings):
     ) -> tuple[PydanticBaseSettingsSource, ...]:
         """"""
         return (JsonConfigSettingsSource(settings_cls),)
+    
 
+load_dotenv()
 
 def get_config() -> Settings:
     """Get settings from config."""
