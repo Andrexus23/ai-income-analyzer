@@ -47,9 +47,9 @@ class VectorStoreManager:
         ids: List = []
 
         for i, doc in enumerate(aggregated_documents):
+            # TODO: field 'metadata' also should be as document parameter but now it's not necessary
             document = Document(
                 page_content=doc['page_content'],
-                # metadata=doc['metadata'],
                 id=str(i),
             )
             ids.append(str(i))
