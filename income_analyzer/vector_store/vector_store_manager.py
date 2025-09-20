@@ -42,17 +42,14 @@ class VectorStoreManager:
         """Add documents at the first time."""
         df: pd.DataFrame =  pd.read_csv(get_config().data_settings.dataset_path)
         data_processor: DataProcessor = DataProcessor(df)
-        statistics = data_processor.aggregate_statistics_for_documents()
+        aggregated_documents = data_processor.aggregate_statistics_for_documents()
         documents: List = []
         ids: List = []
 
-        for i, row in df.iterrows():
+        for i, doc in enumerate(aggregated_documents):
             document = Document(
-                page_content=row['Title'] + ' ' + row['Review'],
-                metadata={
-                    'rating': row['Rating'],
-                    'date': row["Date"],
-                },
+                page_content=doc['page_content'],
+                # metadata=doc['metadata'],
                 id=str(i),
             )
             ids.append(str(i))

@@ -12,10 +12,10 @@ if __name__ == "__main__":
         print("\n\n")
         if question == "q":
             break
-        freelancers = vector_store_manager.retriever.invoke(question)
+        relevant_items = vector_store_manager.retriever.invoke(question)
         response = llm_manager.chain.invoke(
             {
-                "reviews": freelancers, 
+                "relevant_items": relevant_items, 
                 "question": question,
             }
         )
