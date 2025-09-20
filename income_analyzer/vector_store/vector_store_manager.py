@@ -10,6 +10,7 @@ from langchain_community.embeddings import FastEmbedEmbeddings
 
 from income_analyzer.config import get_config
 from income_analyzer.common.constants import K_RELEVANT
+from income_analyzer.data_processing import DataProcessor
 
 class VectorStoreManager:
     def __init__(self):
@@ -40,16 +41,15 @@ class VectorStoreManager:
     def _add_initial_documents(self, vector_store: Chroma):
         """Add documents at the first time."""
         df: pd.DataFrame =  pd.read_csv(get_config().data_settings.dataset_path)
+        data_processor: DataProcessor = DataProcessor(df)
+        aggregated_documents = data_processor.aggregate_statistics_for_documents()
         documents: List = []
         ids: List = []
 
-        for i, row in df.iterrows():
+        for i, doc in enumerate(aggregated_documents):
             document = Document(
-                page_content=row['Title'] + ' ' + row['Review'],
-                metadata={
-                    'rating': row['Rating'],
-                    'date': row["Date"],
-                },
+                page_content=doc['page_content'],
+                # metadata=doc['metadata'],
                 id=str(i),
             )
             ids.append(str(i))
