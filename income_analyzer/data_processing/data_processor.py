@@ -10,27 +10,29 @@ class DataProcessor:
     def aggregate_statistics_for_documents(self) -> List[Dict]:
         """Compute all statistics for passing to vector store."""
         aggregated_documents = [
-            self._income_by_payment(),
-            self._income_by_region(),
+            self._income_by('Payment_Method', page_content='способу оплаты'),
+            self._income_by('Client_Region', page_content='региону проживания'),
+            self._get_projects_count_of_freelancers_with_level(
+                level="Expert", 
+                page_content='Количества выполненных проектов фрилансеров, считающих себя экспертами',
+            ),
         ]
         return aggregated_documents
-    
-    def _income_by_payment(self) -> Dict:
-        """Aggregate income by payment method."""
-        income_by_payment = self._df.groupby('Payment_Method')['Earnings_USD'].agg([
-            'mean', 'median', 'count', 'std',
-        ]).round(2).to_dict()
-        return {
-            'page_content': f'Сравнение доходов фрилансеров по способу оплаты {str(income_by_payment)}',
-        }
         
-    def _income_by_region(self) -> Dict:
-        """Aggregate income by region."""
-        income_by_region = self._df.groupby('Client_Region')['Earnings_USD'].agg([
+    def _income_by(self, by: str, page_content: str) -> Dict:
+        """Aggregate income by field."""
+        income_by_field: Dict = self._df.groupby(by)['Earnings_USD'].agg([
             'mean', 'median', 'count', 'std'
         ]).round(2).to_dict()
         return {
-            'page_content': f'Сравнение доходов фрилансеров по региону проживания {str(income_by_region)}',
+            'page_content': f'Сравнение доходов фрилансеров по {page_content} (в $): {str(income_by_field)}',
+        }
+    
+    def _get_projects_count_of_freelancers_with_level(self, level: str, page_content: str):
+        """Get freelancers with condition."""
+        relevant_part: List = list(self._df[self._df['Experience_Level'] == level]['Job_Completed'].to_dict().values())
+        return {
+            'page_content': f'{page_content}: {str(relevant_part)}',
         }
     
     
