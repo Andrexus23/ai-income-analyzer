@@ -1,6 +1,6 @@
 """Entry point."""
 from income_analyzer.vector_store import VectorStoreManager
-from income_analyzer.llm import LLMManager
+from income_analyzer.llm import LLMManager, PromptDebugHandler
 
 if __name__ == "__main__":
     vector_store_manager = VectorStoreManager()
@@ -17,6 +17,7 @@ if __name__ == "__main__":
             {
                 "relevant_items": relevant_items, 
                 "question": question,
-            }
+            },
+            config={"callbacks": [PromptDebugHandler()]}
         )
         print(response.content)
