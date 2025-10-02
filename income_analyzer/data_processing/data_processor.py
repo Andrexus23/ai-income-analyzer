@@ -12,9 +12,10 @@ class DataProcessor:
         aggregated_documents = [
             self._income_by('Payment_Method', page_content='способу оплаты'),
             self._income_by('Client_Region', page_content='региону проживания'),
-            self._get_projects_count_of_freelancers_with_level(
-                level="Expert", 
-                page_content='Количества выполненных проектов фрилансеров, считающих себя экспертами',
+            self._get_percent_of_freelancers_with_level(
+                level="Expert",
+                less_than=100,
+                page_content='Процент фрилансеров, считающий себя экспертами, выполнивший менее 100 проектов',
             ),
         ]
         return aggregated_documents
@@ -28,11 +29,15 @@ class DataProcessor:
             'page_content': f'Сравнение доходов фрилансеров по {page_content} (в $): {str(income_by_field)}',
         }
     
-    def _get_projects_count_of_freelancers_with_level(self, level: str, page_content: str):
-        """Get freelancers with condition."""
-        relevant_part: List = list(self._df[self._df['Experience_Level'] == level]['Job_Completed'].to_dict().values())
+    def _get_percent_of_freelancers_with_level(self, level: str, less_than: int, page_content: str):
+        """Get freelancers percent with specific level by Job Completed."""
+        df = self._df
+        relevant_part: float = round((
+            df[(df['Experience_Level'] == level) & (df['Job_Completed'] < less_than)].shape[0] / 
+            df[(df['Experience_Level'] == level)].shape[0]
+        ) * 100, 2)
         return {
-            'page_content': f'{page_content}: {str(relevant_part)}',
+            'page_content': f'{page_content}: {str(relevant_part)} %',
         }
     
     
